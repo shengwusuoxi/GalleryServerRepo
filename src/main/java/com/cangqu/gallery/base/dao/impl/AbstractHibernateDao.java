@@ -107,10 +107,10 @@ public abstract class AbstractHibernateDao<T extends Serializable, PK extends Se
     }
 
     @Override
-    public final void create(final T entity) {
+    public final PK create(final T entity) {
         Preconditions.checkNotNull(entity);
         // getCurrentSession().persist(entity);
-        getCurrentSession().saveOrUpdate(entity);
+        return (PK)getCurrentSession().save(entity);
     }
 
     @Override

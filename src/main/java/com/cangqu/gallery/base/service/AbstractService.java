@@ -28,8 +28,8 @@ public abstract class AbstractService<T extends Serializable, PK extends Seriali
     }
 
     @Override
-    public void create(final T entity) {
-        getDao().create(entity);
+    public PK create(final T entity) {
+        return getDao().create(entity);
     }
 
     @Override

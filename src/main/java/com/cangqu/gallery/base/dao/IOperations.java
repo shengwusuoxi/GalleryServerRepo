@@ -17,7 +17,7 @@ public interface IOperations<T extends Serializable, PK extends Serializable> {
 
     public List<T> findByCondition(Condition condition, Page page);
 
-    void create(final T entity);
+    PK create(final T entity);
 
     T update(final T entity);
 
