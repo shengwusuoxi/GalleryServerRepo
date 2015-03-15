@@ -31,7 +31,7 @@
             if (url && url.length > 1) {
                 url = decodeURIComponent(url[1]);
             } else {
-                url = "http://localhost:8080/galleryserver/api-docs";
+                url = "http://localhost:8080/gallery/api-docs";
             }
             window.swaggerUi = new SwaggerUi({
                 url: url,
