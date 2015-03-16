@@ -22,9 +22,9 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2015/3/11 0011.
  */
-@Api(basePath = "/user", value = "UserController", description = "用户管理")
+@Api(basePath = "v1/users", value = "", description = "用户管理")
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "v1/users")
 public class UserController extends BaseController {
 
     private static final Log LOGGER = LogFactory.getLog(UserController.class);

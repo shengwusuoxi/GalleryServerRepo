@@ -1,5 +1,6 @@
 package com.cangqu.gallery.core.model;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -67,6 +68,24 @@ public class User implements Serializable {
      */
     @Column
     private String lastLoginIp;
+
+    /**
+     * 更新登陆次数
+     * @return
+     */
+    public String updateLoginCount() {
+        if (StringUtils.isNotEmpty(loginCount)) {
+            try {
+                Long count = Long.parseLong(loginCount) + 1;
+                loginCount = count.toString();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            loginCount = "1";
+        }
+        return loginCount;
+    }
 
     public String getId() {
         return id;

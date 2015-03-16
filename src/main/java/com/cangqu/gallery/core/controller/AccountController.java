@@ -9,6 +9,7 @@ import com.cangqu.gallery.core.model.User;
 import com.cangqu.gallery.core.service.IUserService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
@@ -16,15 +17,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/3/11 0011.
  */
-@Api(basePath = "/account", value = "AccountController", description = "账号管理")
+@Api(basePath = "v1/accounts", value = "", description = "账号管理")
 @Controller
-@RequestMapping(value = "/account")
+@RequestMapping(value = "v1/accounts")
 public class AccountController extends BaseController {
 
     private static final Log LOGGER = LogFactory.getLog(AccountController.class);
@@ -33,11 +35,13 @@ public class AccountController extends BaseController {
     IUserService userService;
 
 
-    @ApiOperation(value = "注册用户", httpMethod = "POST", response = BaseResultVo.class, notes = "用于注册用户账号")
+    @ApiOperation(value = "注册账号", httpMethod = "POST", response = BaseResultVo.class, notes = "注册用户账号")
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody BaseResultVo register(@RequestParam(value = "username") String userName, @RequestParam String password) {
-        LOGGER.debug("username:" + userName + "pwd:" + password);
+    public @ResponseBody BaseResultVo register(@RequestParam @ApiParam(value = "用户名") String userName,
+                                               @RequestParam @ApiParam(value = "密码") String password,
+                                               @RequestParam @ApiParam(value = "验证码") String checkCode) {
+        LOGGER.debug("userName:" + userName + "pwd:" + password + "checkCode" + checkCode);
         Condition condition = new QuickCondition(User.class);
         condition.addEqual("username", userName);
         List<User> userList = userService.findByCondition(condition, null);
@@ -53,18 +57,24 @@ public class AccountController extends BaseController {
             return buildSuccessResultInfo("账号注册成功！");
         }
         return buildFailedResultInfo(-1,"用户名已经被使用！");
-
     }
 
-    @ApiOperation(value = "用户登录", httpMethod = "POST", response = BaseResultVo.class)
+    @ApiOperation(value = "用户登录", httpMethod = "POST", response = BaseResultVo.class, notes = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public @ResponseBody BaseResultVo login(@RequestParam(value = "username") String username,@RequestParam  String password) {
-        LOGGER.debug("username:" + username + "pwd:" + password);
+    public @ResponseBody BaseResultVo login(@RequestParam @ApiParam(value = "用户名") String userName,
+                                            @RequestParam @ApiParam(value = "密码") String password,
+                                            @RequestParam @ApiParam(value = "验证码") String checkCode,
+                                            HttpServletRequest request) {
+        LOGGER.debug("userName:" + userName + "pwd:" + password + "checkCode" + checkCode);
         Condition condition = new QuickCondition(User.class);
-        condition.addEqual("username", username);
+        condition.addEqual("username", userName);
         List<User> userList = userService.findByCondition(condition, null);
         if (userList.size() != 0) {
             User user = userList.get(0);
+            user.setLastLoginIp(getClientIp(request));
+            user.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
+            user.updateLoginCount();
+            userService.update(user);
             if(user.getPassword().equals(EncodeUtils.sha(EncodeUtils.md5(password)))){
                 return buildSuccessResultInfo("登录成功！");
             }

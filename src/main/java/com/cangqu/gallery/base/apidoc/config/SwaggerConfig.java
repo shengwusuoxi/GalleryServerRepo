@@ -1,13 +1,13 @@
 package com.cangqu.gallery.base.apidoc.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
 import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 /**
  * 项目名称：apidoc
@@ -24,16 +24,8 @@ import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 public class SwaggerConfig
 {
 
+    @Resource
     private SpringSwaggerConfig springSwaggerConfig;
-
-    /**
-     * Required to autowire SpringSwaggerConfig
-     */
-    @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig)
-    {
-        this.springSwaggerConfig = springSwaggerConfig;
-    }
 
     /**
      * Every SwaggerSpringMvcPlugin bean is picked up by the swagger-mvc
