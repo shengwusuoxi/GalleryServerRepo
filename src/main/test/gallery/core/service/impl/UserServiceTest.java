@@ -19,8 +19,6 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:applicationContext-test.xml","classpath:spring-hibernate.xml"})
 public class UserServiceTest {
 
-
-
     @Resource(name="userService")
     private IUserService userService;
 
