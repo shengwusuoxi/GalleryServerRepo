@@ -53,7 +53,7 @@ public class ActivityController extends BaseController {
     public @ResponseBody BaseResultVo joinActivity(@RequestParam @ApiParam(value = "活动ID") String activityId,
                                                    @RequestParam @ApiParam(value = "参加活动的用户ID") String userId) {
         try {
-            activityService.joinActivity(activityId,userId);
+            activityService.joinActivity(userId,activityId);
         } catch (BaseException e) {
             return  buildFailedResultInfo(e);
         }
