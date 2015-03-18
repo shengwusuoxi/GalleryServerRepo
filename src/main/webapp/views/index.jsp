@@ -31,7 +31,7 @@
             if (url && url.length > 1) {
                 url = decodeURIComponent(url[1]);
             } else {
-                url = "http://192.168.10.8:8080/gallery/api-docs";
+                url = "<%=request.getContextPath() %>/api-docs";
             }
             window.swaggerUi = new SwaggerUi({
                 url: url,
