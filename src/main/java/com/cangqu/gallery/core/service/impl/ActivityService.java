@@ -66,7 +66,7 @@ public class ActivityService extends AbstractService<Activity, String> implement
             userDao.update(initiator);
             return activity;
         }else{
-            throw new BaseException(-1, "发布活动失败！");
+            throw new BaseException(-1, "用户不存在！");
         }
     }
 
@@ -85,7 +85,7 @@ public class ActivityService extends AbstractService<Activity, String> implement
             user.getActivities().add(activity);
             activityDao.update(activity);
         }else {
-            throw new BaseException(-1,"参加活动失败！");
+            throw new BaseException(-1,"活动或用户不存在！");
         }
     }
 
@@ -103,7 +103,7 @@ public class ActivityService extends AbstractService<Activity, String> implement
             }
             return activityInfoList;
         }else {
-            throw new BaseException(-1, "用户ID不存在");
+            throw new BaseException(-1, "用户不存在！");
         }
     }
 
@@ -119,7 +119,7 @@ public class ActivityService extends AbstractService<Activity, String> implement
             }
             return userInfoList;
         }else {
-           throw new BaseException(-1,"活动ID不存在");
+           throw new BaseException(-1,"活动不存在！");
         }
     }
 

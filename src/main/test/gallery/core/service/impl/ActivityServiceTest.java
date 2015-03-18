@@ -1,13 +1,14 @@
 package gallery.core.service.impl;
 
-import com.cangqu.gallery.core.model.Activity;
-import com.cangqu.gallery.core.model.User;
+import com.cangqu.gallery.base.Exception.BaseException;
 import com.cangqu.gallery.core.service.IActivityService;
 import com.cangqu.gallery.core.service.IUserService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 /**
@@ -24,21 +25,39 @@ public class ActivityServiceTest {
     private IUserService userService;
 
     @Test
+    @Transactional
     public void testInitiateActivity(){
-        User initiator = userService.getById("40288a884c27937e014c2793879c0000");
-        if (initiator != null){
-            Activity activity = new Activity();
-            activity.setCreateUserId("40288a884c27937e014c2793879c0000");
-            activity.setTime("zxxz");
-            activity.setPlace("xzzx");
-            activity.setDescription("xzxz");
-            activity.setImageUrl("xzxzxz");
-            initiator.getActivities().add(activity);
-            activity.getUsers().add(initiator);
-            userService.update(initiator);
-            System.out.println("发布活动成功！");
-        }else {
-            System.out.println("用户ID不存在");
+        try {
+            System.out.println(activityService.initiateActivity("40288a884c2ac098014c2ac254cf0000", "zxxz", "zxxz", "zxxz", "zxxz"));
+        } catch (BaseException e) {
+            Assert.fail(e.toString());
+        }
+    }
+
+    @Test
+    public void testJoinActivity(){
+        try {
+            activityService.joinActivity("40288a884c2ac098014c2ac254cf0000","40288a884c2be30c014c2be36ab20000");
+        } catch (BaseException e) {
+            Assert.fail(e.toString());
+        }
+    }
+
+    @Test
+    public void testListActivities(){
+        try {
+            System.out.println(activityService.listActivities("40288a884c2ac098014c2ac254cf0000"));
+        } catch (BaseException e) {
+            Assert.fail(e.toString());
+        }
+    }
+
+    @Test
+    public void testListParticipants(){
+        try {
+            System.out.println(activityService.listParticipants("40288a884c2be30c014c2be36ab20000"));
+        } catch (BaseException e) {
+            Assert.fail(e.toString());
         }
     }
 

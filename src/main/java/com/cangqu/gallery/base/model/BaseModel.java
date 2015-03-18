@@ -127,21 +127,23 @@ public class BaseModel implements Serializable {
         this.version = version;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        BaseModel baseModel = (BaseModel) o;
-
-        if (!id.equals(baseModel.id)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        BaseModel baseModel = (BaseModel) o;
+//
+//        if (!id.equals(baseModel.id)) return false;
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = id!=null?id.hashCode():0;
+//        result = result+(int)'f';
+//        return result;
+//    }
 
 }

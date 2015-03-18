@@ -83,9 +83,6 @@ public class User extends BaseModel implements Serializable {
         return loginCount;
     }
 
-
-
-
     public String getUserName() {
         return userName;
     }
@@ -148,5 +145,19 @@ public class User extends BaseModel implements Serializable {
 
     public void setActivities(Set<Activity> activities) {
         this.activities = activities;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                ", state='" + state + '\'' +
+                ", loginCount='" + loginCount + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", lastLoginIp='" + lastLoginIp + '\'' +
+                ", activities=" + activities +
+                '}';
     }
 }

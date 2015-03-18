@@ -79,4 +79,17 @@ public class ActivityInfo implements Serializable {
     public void setParticipantsCount(String participantsCount) {
         this.participantsCount = participantsCount;
     }
+
+    @Override
+    public String toString() {
+        return "ActivityInfo{" +
+                "id='" + id + '\'' +
+                ", createUserName='" + createUserName + '\'' +
+                ", time='" + time + '\'' +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", participantsCount='" + participantsCount + '\'' +
+                '}';
+    }
 }

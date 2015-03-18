@@ -22,6 +22,9 @@ public class Activity extends BaseModel implements Serializable {
     @Column
     private String imageUrl;
 
+    /**
+     * 所有参加活动的用户
+     */
     @ManyToMany(mappedBy="activities",fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
     private Set<User> users = new HashSet<User>();
 
@@ -62,5 +65,16 @@ public class Activity extends BaseModel implements Serializable {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "time='" + time + '\'' +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", users=" + users +
+                '}';
     }
 }

@@ -24,4 +24,13 @@ public class BaseException extends Exception {
     public int getCode() {
         return code;
     }
+
+    @Override
+    public String toString() {
+        return "BaseException{" +
+                "code=" + code +
+                ", message='" + getMessage() + '\'' +
+                ", stack='" + getStackTrace()[0] + '\'' +
+                '}';
+    }
 }

@@ -59,4 +59,13 @@ public class UserInfo implements Serializable {
         this.userType = userType;
     }
 
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }
