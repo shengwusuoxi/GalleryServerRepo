@@ -38,7 +38,7 @@ public abstract class AbstractHibernateDao<T extends Serializable, PK extends Se
     }
 
     @Override
-    public final T findOne(final String id) {
+    public final T getById(final String id) {
         return (T)getCurrentSession().get(clazz, id);
     }
 
@@ -109,16 +109,13 @@ public abstract class AbstractHibernateDao<T extends Serializable, PK extends Se
     @Override
     public final PK create(final T entity) {
         Preconditions.checkNotNull(entity);
-        // getCurrentSession().persist(entity);
         return (PK)getCurrentSession().save(entity);
     }
 
     @Override
     public final T update(final T entity) {
         Preconditions.checkNotNull(entity);
-        getCurrentSession().update(entity);
-        return entity;
-        //return (T)getCurrentSession().merge(entity);
+        return (T)getCurrentSession().merge(entity);
     }
 
     @Override
@@ -129,7 +126,7 @@ public abstract class AbstractHibernateDao<T extends Serializable, PK extends Se
 
     @Override
     public final void deleteById(final String entityId) {
-        final T entity = findOne(entityId);
+        final T entity = getById(entityId);
         Preconditions.checkState(entity != null);
         delete(entity);
     }

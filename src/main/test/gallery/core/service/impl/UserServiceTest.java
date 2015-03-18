@@ -19,13 +19,15 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:applicationContext-test.xml","classpath:spring-hibernate.xml"})
 public class UserServiceTest {
 
+
+
     @Resource(name="userService")
     private IUserService userService;
 
     @Test
     public void testCreateUser(){
         User user = new User();
-        user.setUsername("test");
+        user.setUserName("test");
         user.setUserType("0");
         user.setPassword("sdsdsd");
         user.setState("0");
@@ -35,7 +37,8 @@ public class UserServiceTest {
 
     @Test
     public void testGetUserById(){
-        User user = userService.findOne("40288a884c219aa0014c219b91660000");
+        User user = userService.getById("40288a884c219aa0014c219b91660000");
         assertNotNull(user);
     }
+
 }

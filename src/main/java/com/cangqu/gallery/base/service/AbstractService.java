@@ -10,11 +10,12 @@ import java.util.List;
 
 @Transactional
 public abstract class AbstractService<T extends Serializable, PK extends Serializable> implements IOperations<T, PK> {
+
     protected abstract IOperations<T, PK> getDao();
 
     @Override
-    public T findOne(final String id) {
-        return getDao().findOne(id);
+    public T getById(final String id) {
+        return getDao().getById(id);
     }
 
     @Override
@@ -24,7 +25,7 @@ public abstract class AbstractService<T extends Serializable, PK extends Seriali
 
     @Override
     public List<T> findByCondition(Condition condition, Page page){
-        return getDao().findByCondition(condition,page);
+        return getDao().findByCondition(condition, page);
     }
 
     @Override

@@ -1,37 +1,23 @@
 package com.cangqu.gallery.core.model;
 
+import com.cangqu.gallery.base.model.BaseModel;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name="user")
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid.hex")
-    @Column(nullable = false)
-    private String id;
-
-    /**
-     * 账号创建时间
-     */
-    @Column(nullable = false)
-    private Timestamp createTime;
+public class User extends BaseModel implements Serializable {
 
 
     /**
      * 用户名
      */
     @Column(nullable = false, unique = true)
-    private String username;
+    private String userName;
 
     /**
      * 密码
@@ -70,6 +56,16 @@ public class User implements Serializable {
     private String lastLoginIp;
 
     /**
+     * 活动
+     */
+    @Column
+    @ManyToMany( fetch = FetchType.EAGER, cascade={CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "user_activity",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name = "activity_id",referencedColumnName="id")})
+    private Set<Activity> activities = new HashSet<Activity>();
+
+    /**
      * 更新登陆次数
      * @return
      */
@@ -87,24 +83,15 @@ public class User implements Serializable {
         return loginCount;
     }
 
-    public String getId() {
-        return id;
+
+
+
+    public String getUserName() {
+        return userName;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -153,5 +140,13 @@ public class User implements Serializable {
 
     public void setLastLoginIp(String lastLoginIp) {
         this.lastLoginIp = lastLoginIp;
+    }
+
+    public Set<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        this.activities = activities;
     }
 }

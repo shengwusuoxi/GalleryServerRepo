@@ -43,7 +43,7 @@ public class SwaggerConfig
     {
         ApiInfo apiInfo = new ApiInfo(
                 "随身画廊API接口文档",
-                "各个Controller下对应相应业务接口",
+                null,
                 null,
                 null,
                 null,

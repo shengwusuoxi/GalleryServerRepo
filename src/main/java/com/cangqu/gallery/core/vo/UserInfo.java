@@ -4,8 +4,6 @@ import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by Administrator on 2015/3/15.
@@ -17,12 +15,8 @@ public class UserInfo implements Serializable {
     private String id;
 
 
-    @ApiModelProperty(value = "账号创建时间")
-    private String createTime;
-
-
     @ApiModelProperty(value = "用户名")
-    private String username;
+    private String userName;
 
 
     @ApiModelProperty(value = "密码")
@@ -41,21 +35,12 @@ public class UserInfo implements Serializable {
         this.id = id;
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.createTime = format.format(createTime.getTime());
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
