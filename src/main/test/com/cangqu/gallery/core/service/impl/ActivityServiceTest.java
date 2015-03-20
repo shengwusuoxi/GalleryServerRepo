@@ -1,4 +1,4 @@
-package gallery.core.service.impl;
+package com.cangqu.gallery.core.service.impl;
 
 import com.cangqu.gallery.base.Exception.BaseException;
 import com.cangqu.gallery.core.service.IActivityService;

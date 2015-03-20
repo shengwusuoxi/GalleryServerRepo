@@ -1,4 +1,4 @@
-package gallery.core.service.impl;
+package com.cangqu.gallery.core.service.impl;
 
 import com.cangqu.gallery.core.model.User;
 import com.cangqu.gallery.core.service.IUserService;
