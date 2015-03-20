@@ -10,7 +10,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.
     <mvc:annotation-driven />
 
     <!-- 扫描包 -->
-    <context:component-scan base-package="com.cangqu.gallery">
+    <context:component-scan base-package="com.cangqu.gallery.server">
         <context:exclude-filter type="regex" expression="com.*.apidoc.*"/>
     </context:component-scan>
 

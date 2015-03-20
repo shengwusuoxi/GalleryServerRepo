@@ -44,7 +44,7 @@
             </props>
         </property>
         <property name="packagesToScan">
-            <value>com.cangqu.gallery.core.model</value>
+            <value>com.cangqu.gallery.server.core.model</value>
         </property>
     </bean>
 
