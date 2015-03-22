@@ -3,6 +3,7 @@ package com.cangqu.gallery.server.core.controller;
 import com.cangqu.gallery.server.base.Exception.BaseException;
 import com.cangqu.gallery.server.base.controller.BaseController;
 import com.cangqu.gallery.server.base.vo.BaseResultVo;
+import com.cangqu.gallery.server.core.constant.RequestConstant;
 import com.cangqu.gallery.server.core.service.IUserService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -20,7 +21,7 @@ import javax.annotation.Resource;
  */
 @Api(basePath = "v1/account", value = "", description = "账号")
 @Controller
-@RequestMapping(value = "v1/account")
+@RequestMapping(value = "v1/account", produces = RequestConstant.CONTROLLER_PRODUCES)
 public class AccountController extends BaseController {
 
     private static final Log LOGGER = LogFactory.getLog(AccountController.class);
@@ -29,7 +30,7 @@ public class AccountController extends BaseController {
     IUserService userService;
 
     @ApiOperation(value = "注册账号", httpMethod = "POST", response = BaseResultVo.class, notes = "注册用户账号")
-    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody BaseResultVo register(@RequestParam @ApiParam(value = "用户名") String userName,
                                                @RequestParam @ApiParam(value = "密码") String password,
@@ -45,7 +46,7 @@ public class AccountController extends BaseController {
     }
 
     @ApiOperation(value = "用户登录", httpMethod = "POST", response = BaseResultVo.class, notes = "用户登录")
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody BaseResultVo login(@RequestParam @ApiParam(value = "用户名") String userName,
                                             @RequestParam @ApiParam(value = "密码") String password,
                                             @RequestParam @ApiParam(value = "验证码") String checkCode) {
