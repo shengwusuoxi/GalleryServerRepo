@@ -3,8 +3,8 @@ package com.cangqu.gallery.server.core.service;
 import com.cangqu.gallery.server.base.Exception.BaseException;
 import com.cangqu.gallery.server.base.dao.IOperations;
 import com.cangqu.gallery.server.core.model.Activity;
-import com.cangqu.gallery.server.core.vo.ActivityInfo;
-import com.cangqu.gallery.server.core.vo.UserInfo;
+import com.cangqu.gallery.server.core.model.vo.ActivityInfo;
+import com.cangqu.gallery.server.core.model.vo.UserInfo;
 
 import java.util.List;
 

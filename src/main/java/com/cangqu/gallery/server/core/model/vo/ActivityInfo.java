@@ -1,4 +1,4 @@
-package com.cangqu.gallery.server.core.vo;
+package com.cangqu.gallery.server.core.model.vo;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ public class ActivityInfo implements Serializable {
     /**
      * 活动发起人用户名
      */
-    private String createUserName;
+    private String creatorName;
 
     private String time;
 
@@ -32,12 +32,12 @@ public class ActivityInfo implements Serializable {
         this.id = id;
     }
 
-    public String getCreateUserName() {
-        return createUserName;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreateUserName(String createUserName) {
-        this.createUserName = createUserName;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
     public String getTime() {
@@ -84,7 +84,7 @@ public class ActivityInfo implements Serializable {
     public String toString() {
         return "ActivityInfo{" +
                 "id='" + id + '\'' +
-                ", createUserName='" + createUserName + '\'' +
+                ", creatorName='" + creatorName + '\'' +
                 ", time='" + time + '\'' +
                 ", place='" + place + '\'' +
                 ", description='" + description + '\'' +

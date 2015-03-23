@@ -1,10 +1,10 @@
-package com.cangqu.gallery.server.core.controller;
+package com.cangqu.gallery.server.core.web.controller;
 
 import com.cangqu.gallery.server.base.Exception.BaseException;
-import com.cangqu.gallery.server.base.controller.BaseController;
-import com.cangqu.gallery.server.base.vo.BaseResultVo;
+import com.cangqu.gallery.server.base.model.vo.BaseResultVo;
+import com.cangqu.gallery.server.base.web.controller.BaseController;
+import com.cangqu.gallery.server.core.model.vo.UserInfo;
 import com.cangqu.gallery.server.core.service.IUserService;
-import com.cangqu.gallery.server.core.vo.UserInfo;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
@@ -20,9 +20,9 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2015/3/11 0011.
  */
-@Api(basePath = "v1/user", value = "", description = "用户")
+@Api(basePath = "user", value = "", description = "用户")
 @Controller
-@RequestMapping(value = "v1/user")
+@RequestMapping(value = "user")
 public class UserController extends BaseController {
 
     private static final Log LOGGER = LogFactory.getLog(UserController.class);

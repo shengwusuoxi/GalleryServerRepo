@@ -1,8 +1,8 @@
-package com.cangqu.gallery.server.core.controller;
+package com.cangqu.gallery.server.core.web.controller;
 
 import com.cangqu.gallery.server.base.Exception.BaseException;
-import com.cangqu.gallery.server.base.controller.BaseController;
-import com.cangqu.gallery.server.base.vo.BaseResultVo;
+import com.cangqu.gallery.server.base.model.vo.BaseResultVo;
+import com.cangqu.gallery.server.base.web.controller.BaseController;
 import com.cangqu.gallery.server.core.service.IActivityService;
 import com.cangqu.gallery.server.core.service.IUserService;
 import com.wordnik.swagger.annotations.Api;
@@ -19,9 +19,9 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2015/3/11 0011.
  */
-@Api(basePath = "v1/activity", value = "", description = "活动")
+@Api(basePath = "activity", value = "", description = "活动")
 @Controller
-@RequestMapping(value = "v1/activity")
+@RequestMapping(value = "activity")
 public class ActivityController extends BaseController {
 
     private static final Log LOGGER = LogFactory.getLog(ActivityController.class);

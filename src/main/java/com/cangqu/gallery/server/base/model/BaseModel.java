@@ -28,13 +28,13 @@ public class BaseModel implements Serializable {
     /**
      * 创建者用户ID
      */
-    private String createUserId;
+    private String creatorId;
 
 
     /**
      * 创建者用户名
      */
-    private String createUserName;
+    private String creatorName;
 
 
     /**
@@ -45,7 +45,7 @@ public class BaseModel implements Serializable {
     /**
      * 更新者用户名
      */
-    private String updateUser;
+    private String updateName;
 
     /**
      * 版本
@@ -87,20 +87,20 @@ public class BaseModel implements Serializable {
         this.createTime = createTime;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreateUserName() {
-        return createUserName;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreateUserName(String createUserName) {
-        this.createUserName = createUserName;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
     public Timestamp getUpdateTime() {
@@ -111,12 +111,12 @@ public class BaseModel implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String getUpdateUser() {
-        return updateUser;
+    public String getUpdateName() {
+        return updateName;
     }
 
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
+    public void setUpdateName(String updateName) {
+        this.updateName = updateName;
     }
 
     public String getVersion() {

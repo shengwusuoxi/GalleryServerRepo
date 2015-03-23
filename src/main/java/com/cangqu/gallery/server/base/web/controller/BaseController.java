@@ -1,7 +1,7 @@
-package com.cangqu.gallery.server.base.controller;
+package com.cangqu.gallery.server.base.web.controller;
 
 import com.cangqu.gallery.server.base.Exception.BaseException;
-import com.cangqu.gallery.server.base.vo.BaseResultVo;
+import com.cangqu.gallery.server.base.model.vo.BaseResultVo;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,4 +1,4 @@
-package com.cangqu.gallery.server.base.vo;
+package com.cangqu.gallery.server.base.model.vo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,12 +1,12 @@
 /**
  *
  */
-package com.cangqu.gallery.server.base.vo;
-
-import java.io.Serializable;
+package com.cangqu.gallery.server.base.model.vo;
 
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 
 /**
  * @description: 客户端接收的结果对象

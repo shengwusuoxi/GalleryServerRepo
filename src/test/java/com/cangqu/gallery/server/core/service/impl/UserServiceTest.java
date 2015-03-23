@@ -25,8 +25,7 @@ public class UserServiceTest {
     @Test
     public void testCreateUser(){
         User user = new User();
-        user.setUserName("test");
-        user.setUserType("0");
+        user.setName("test");
         user.setPassword("sdsdsd");
         user.setState("0");
         user.setCreateTime(new Timestamp(System.currentTimeMillis()));

@@ -4,12 +4,14 @@ import com.cangqu.gallery.server.base.Exception.BaseException;
 import com.cangqu.gallery.server.base.dao.IOperations;
 import com.cangqu.gallery.server.base.service.AbstractService;
 import com.cangqu.gallery.server.core.dao.IActivityDao;
+import com.cangqu.gallery.server.core.dao.IPainterDao;
 import com.cangqu.gallery.server.core.dao.IUserDao;
 import com.cangqu.gallery.server.core.model.Activity;
+import com.cangqu.gallery.server.core.model.Painter;
 import com.cangqu.gallery.server.core.model.User;
 import com.cangqu.gallery.server.core.service.IActivityService;
-import com.cangqu.gallery.server.core.vo.ActivityInfo;
-import com.cangqu.gallery.server.core.vo.UserInfo;
+import com.cangqu.gallery.server.core.model.vo.ActivityInfo;
+import com.cangqu.gallery.server.core.model.vo.UserInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,9 @@ public class ActivityService extends AbstractService<Activity, String> implement
     @Resource(name="userHibernateDAO")
     private IUserDao userDao;
 
+    @Resource(name="painterHibernateDAO")
+    private IPainterDao painterDao;
+
     public ActivityService() {
         super();
     }
@@ -41,7 +46,7 @@ public class ActivityService extends AbstractService<Activity, String> implement
 
     /**
      * 发起活动
-     * @param initiatorId
+     * @param painterId
      * @param time
      * @param place
      * @param description
@@ -50,20 +55,20 @@ public class ActivityService extends AbstractService<Activity, String> implement
      * @throws com.cangqu.gallery.server.base.Exception.BaseException
      */
     @Override
-    public Activity initiateActivity(String initiatorId, String time, String place, String description, String imageURL) throws BaseException {
-        User initiator = userDao.getById(initiatorId);
-        if (initiator != null){
+    public Activity initiateActivity(String painterId, String time, String place, String description, String imageURL) throws BaseException {
+        Painter painter = painterDao.getById(painterId);
+        if (painter != null){
             Activity activity = new Activity();
-            activity.setCreateUserId(initiatorId);
-            activity.setCreateUserName(initiator.getUserName());
+            activity.setCreatorId(painterId);
+            activity.setCreatorName(painter.getName());
             activity.setCreateTime(new Timestamp(System.currentTimeMillis()));
             activity.updateVersion();
             activity.setTime(time);
             activity.setPlace(place);
             activity.setDescription(description);
             activity.setImageUrl(imageURL);
-            initiator.getActivities().add(activity);
-            userDao.update(initiator);
+            painter.getActivities().add(activity);
+            painterDao.update(painter);
             return activity;
         }else{
             throw new BaseException(-1, "用户不存在！");
@@ -90,16 +95,16 @@ public class ActivityService extends AbstractService<Activity, String> implement
     }
 
     @Override
-    public List<ActivityInfo> listActivities(String userId) throws BaseException {
-        User user = userDao.getById(userId);
-        if (user != null){
-            List<ActivityInfo> activityInfoList = new ArrayList<ActivityInfo>();
-            for(Activity activity : user.getActivities()){
-                ActivityInfo activityInfo = new ActivityInfo();
-                BeanUtils.copyProperties(activity, activityInfo);
-                activityInfo.setCreateUserName(activity.getCreateUserName());
-                activityInfo.setParticipantsCount(String.valueOf(activity.getUsers().size()));
-                activityInfoList.add(activityInfo);
+    public List<ActivityInfo> listActivities(String painterId) throws BaseException {
+        Painter painter = painterDao.getById(painterId);
+                if (painter != null){
+                    List<ActivityInfo> activityInfoList = new ArrayList<ActivityInfo>();
+                    for(Activity activity : painter.getActivities()){
+                        ActivityInfo activityInfo = new ActivityInfo();
+                        BeanUtils.copyProperties(activity, activityInfo);
+                        activityInfo.setCreatorName(activity.getCreatorName());
+                        activityInfo.setParticipantsCount(String.valueOf(activity.getUsers().size()));
+                        activityInfoList.add(activityInfo);
             }
             return activityInfoList;
         }else {

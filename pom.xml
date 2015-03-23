@@ -221,6 +221,12 @@
                     <stopKey>foo</stopKey>
                     <webAppSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}
                     </webAppSourceDirectory>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>MAVEN_OPTS</name>
+                            <value>-Xmx128m</value>
+                        </systemProperty>
+                    </systemProperties>
                 <contextPath>/gallery</contextPath>
                 </configuration>
             </plugin>

@@ -1,4 +1,4 @@
-package com.cangqu.gallery.server.core.vo;
+package com.cangqu.gallery.server.core.model.vo;
 
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -16,18 +16,14 @@ public class UserInfo implements Serializable {
 
 
     @ApiModelProperty(value = "手机号")
-    private String phone;
+    private String telephone;
 
     @ApiModelProperty(value = "用户名")
-    private String userName;
+    private String name;
 
 
     @ApiModelProperty(value = "密码")
     private String password;
-
-
-    @ApiModelProperty(value = "用户类型")
-    private String userType;
 
 
     public String getId() {
@@ -38,20 +34,20 @@ public class UserInfo implements Serializable {
         this.id = id;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -62,22 +58,13 @@ public class UserInfo implements Serializable {
         this.password = password;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id='" + id + '\'' +
-                ", phone='" + phone + '\'' +
-                ", userName='" + userName + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", userType='" + userType + '\'' +
                 '}';
     }
 }
