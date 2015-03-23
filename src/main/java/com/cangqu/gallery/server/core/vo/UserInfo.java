@@ -15,6 +15,9 @@ public class UserInfo implements Serializable {
     private String id;
 
 
+    @ApiModelProperty(value = "手机号")
+    private String phone;
+
     @ApiModelProperty(value = "用户名")
     private String userName;
 
@@ -33,6 +36,14 @@ public class UserInfo implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getUserName() {
@@ -63,6 +74,7 @@ public class UserInfo implements Serializable {
     public String toString() {
         return "UserInfo{" +
                 "id='" + id + '\'' +
+                ", phone='" + phone + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", userType='" + userType + '\'' +

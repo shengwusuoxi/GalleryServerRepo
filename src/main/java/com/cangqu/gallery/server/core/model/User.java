@@ -14,6 +14,12 @@ public class User extends BaseModel implements Serializable {
 
 
     /**
+     * 用户手机号
+     */
+    @Column(nullable = false, unique = true)
+    private String phone;
+
+    /**
      * 用户名
      */
     @Column(nullable = false, unique = true)
@@ -83,6 +89,14 @@ public class User extends BaseModel implements Serializable {
         return loginCount;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -150,7 +164,8 @@ public class User extends BaseModel implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "phone='" + phone + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", userType='" + userType + '\'' +
                 ", state='" + state + '\'' +
